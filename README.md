@@ -20,6 +20,16 @@ Source-Follower Accumulation: Designed a 1FeFET-1R MAC cell utilizing a source-f
 
 Hardware-Aware Weight Calibration: Identified array-level source degeneration non-linearities in a 3x3 crossbar and neutralized them using an iterative, non-uniform threshold voltage calibration technique (0.9V, 1.2V, 1.3V, 1.7V) to ensure reliable Analog-to-Digital (ADC) read margins.
 
+Known Limitations & Toolchain Constraints
+
+A core objective of this project was navigating the realities of open-source Electronic Design Automation (EDA) workflows. As such, this simulation contains deliberate architectural abstractions and known shortfalls:
+
+OpenVAF vs. The Preisach Model: Initial attempts were made to simulate realistic, smooth domain-switching hysteresis using a highly accurate behavioral Preisach model. However, current open-source Verilog-A compilers (OpenVAF) lack robust support for the internal array allocations required to track domain history. Consequently, we reverted to the L-K thermodynamic model, which assumes a macroscopic crystal and introduces abrupt, non-ideal capacitance "snapping."
+
+The FeFET/NCFET Simulation Paradox: Due to the aforementioned open-source workflow challenges, the device simulated in this array is an idealized architectural abstraction. It mathematically merges the hyper-fast sub-60mV/dec switching speed of an NCFET (which requires operating on the unstable energy peak) with the non-volatile memory retention of a FeFET (which requires sitting in the stable energy valleys) via local Gate Voltage Shifting. A physical FeFET array would exhibit noticeably more sluggish transient charging.
+
+Imperfect Linearity: While the hardware-aware weight pre-distortion ($V_{th}$ calibration) successfully mitigated severe source degeneration and choke-out in the 3x3 array, perfect analog linearity was not achieved. The inherent physical nature of the L-K model's polarization dynamics dictates that a degree of residual analog bending remains present at the bitline outputs.
+
 Repository Structure
 
 /simulations/ - Contains all Ngspice .sp control scripts and netlists (Single-cell MAC, Hysteresis sweeps, 3x3 Array).
@@ -40,7 +50,6 @@ The following plot demonstrates the parallel accumulation of the 3x3 crossbar bi
 
 Comparison of standard zero-weight states vs. the artificially elevated $V_{th}$ anchor state, proving a flat 0.0V noise floor under maximum input activation.
 
-(Note: Upload your leakage mitigation plot to the images folder and link it here!)
 [Leakage Mitigation](https://github.com/Dhyey204/NCFET-InMemory-Computing-Macro/blob/main/images/Screenshot%202026-07-04%20002947.png)
 
 How to Run the Simulations
