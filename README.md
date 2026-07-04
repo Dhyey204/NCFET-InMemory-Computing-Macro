@@ -50,7 +50,7 @@ You must have Ngspice installed along with OpenVAF support enabled to read the .
 
 Clone the repository:
 
-git clone https://github.com/YourUsername/NCFET-InMemory-Computing-Macro.git
+git clone https://github.com/Dhyey204/NCFET-InMemory-Computing-Macro.git
 
 
 Navigate to the simulations folder:
