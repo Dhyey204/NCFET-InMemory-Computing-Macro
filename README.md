@@ -74,8 +74,8 @@ ngspice mac_3x3.sp
 
 References
 
-T. Soliman, S. Chatterjee, N. Laleni et al., "First demonstration of in-memory computing crossbar using multi-level Cell FeFET," Nature Communications, 2023.
+Soliman, T., Chatterjee, S., Laleni, N. et al.  ["First demonstration of in-memory computing crossbar using multi-level Cell FeFET,"](https://doi.org/10.1038/s41467-023-42110-y)  Nat Commun 14, 6348 (2023).
 
-K. Ni and M. S. E. Khan, "Ferroelectric FET Model," nanoHUB, Purdue University.
+K. Ni and M. S. E. Khan, ["Ferroelectric FET Model,"](https://nanohub.org/publications/95/?v=1) nanoHUB, Purdue University.
 
-OpenVAF Compiler Framework, semimod.de
+[OpenVAF Compiler Framework](https://openvaf.semimod.de/)
